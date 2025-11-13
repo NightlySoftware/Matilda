@@ -223,7 +223,7 @@ function FooterSection() {
             </h4>
             <div className="space-y-3">
               <div className="flex items-center gap-3">
-                <div className="size-8 rounded flex items-center justify-center">
+                <div className="size-8 rounded flex items-center justify-center [&>svg]:w-full [&>svg]:h-full [&>svg]:max-w-full [&>svg]:max-h-full">
                   <svg viewBox="0 0 1024 1024">
                     <g>
                       <path
@@ -264,7 +264,7 @@ function FooterSection() {
                 <span className="text-sm">Efectivo</span>
               </div>
               <div className="flex items-center gap-3">
-                <div className="size-8 rounded flex items-center justify-center">
+                <div className="size-8 rounded flex items-center justify-center [&>svg]:w-full [&>svg]:h-full [&>svg]:max-w-full [&>svg]:max-h-full">
                   <svg
                     clipRule="evenodd"
                     fillRule="evenodd"
@@ -297,7 +297,7 @@ function FooterSection() {
                 <span className="text-sm">Transferencia</span>
               </div>
               <div className="flex items-center gap-3">
-                <div className="size-8 rounded flex items-center justify-center">
+                <div className="size-8 rounded flex items-center justify-center [&>svg]:w-full [&>svg]:h-full [&>svg]:max-w-full [&>svg]:max-h-full">
                   <svg
                     viewBox="0 -11 70 70"
                     fill="none"
@@ -332,7 +332,7 @@ function FooterSection() {
                 <span className="text-sm">Visa</span>
               </div>
               <div className="flex items-center gap-3">
-                <div className="size-8 rounded flex items-center justify-center">
+                <div className="size-8 rounded flex items-center justify-center [&>svg]:w-full [&>svg]:h-full [&>svg]:max-w-full [&>svg]:max-h-full">
                   <svg
                     viewBox="0 -9 58 58"
                     fill="none"
@@ -379,7 +379,7 @@ function FooterSection() {
                 <span className="text-sm">Mastercard</span>
               </div>
               <div className="flex items-center gap-3">
-                <div className="size-8 rounded flex items-center justify-center">
+                <div className="size-8 rounded flex items-center justify-center [&>svg]:w-full [&>svg]:h-full [&>svg]:max-w-full [&>svg]:max-h-full">
                   <svg
                     viewBox="0 -9 58 58"
                     fill="none"
@@ -442,7 +442,7 @@ function FooterSection() {
           alt="Cookie decoration"
           width={300}
           height={200}
-          className="h-64 w-auto object-contain"
+          className="h-20 lg:h-40 w-auto object-contain"
         />
       </div>
 
@@ -452,7 +452,7 @@ function FooterSection() {
           alt="Cookie decoration"
           width={300}
           height={200}
-          className="h-64 w-auto object-contain"
+          className="h-20 lg:h-40 w-auto object-contain"
         />
       </div>
     </footer>

@@ -31,7 +31,7 @@ export default function HeroSection() {
         </svg>
       </div>
       {/* Content Section */}
-      <div className="container mx-10 text-center relative z-10 py-12">
+      <div className="container mx-8 text-center relative z-10 py-12">
         <div className="mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12">
           {/* Text Content - Left side on desktop */}
           <div className="flex-1 text-center md:text-left">
@@ -111,7 +111,7 @@ export default function HeroSection() {
 
       {/* Scroll Indicator */}
       <div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
         style={{ animation: "bounce 2s infinite" }}
       >
         <div className="w-6 h-10 border-2 border-[#00054B] rounded-full flex justify-center">

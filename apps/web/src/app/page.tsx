@@ -170,7 +170,10 @@ function InstagramPostsSection() {
           >
             <CarouselContent className="-ml-2 md:-ml-4">
               {instagramPosts.map((postUrl, index) => (
-                <CarouselItem key={index} className="pl-2 md:pl-4 basis-1/2">
+                <CarouselItem
+                  key={index}
+                  className="pl-2 md:pl-4 basis-full md:basis-1/2"
+                >
                   <div className="rounded-2xl overflow-hidden border border-gray-200">
                     <iframe
                       src={`${postUrl}embed`}

@@ -381,11 +381,10 @@ export default function MenuPage() {
             </p>
           </div> */}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+          {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
             {Object.entries(menuData.menu).map(
               ([categoryKey, category], index) => (
                 <div key={categoryKey} className="space-y-1">
-                  {/* Main Category */}
                   <button
                     onClick={() => toggleCategory(categoryKey)}
                     className="group flex items-center justify-between w-full px-3 py-2 bg-white rounded-lg border border-gray-200 hover:border-[#223DFC] hover:bg-[#223DFC]/5 transition-all duration-200"
@@ -407,7 +406,6 @@ export default function MenuPage() {
                     </div>
                   </button>
 
-                  {/* Subsections */}
                   <div
                     className={`ml-6 space-y-1 overflow-hidden transition-all duration-300 ease-in-out ${
                       expandedCategories.has(categoryKey)
@@ -445,7 +443,7 @@ export default function MenuPage() {
                 </div>
               )
             )}
-          </div>
+          </div> */}
 
           {/* PDF Download Button */}
           <div className="mt-6 w-full flex justify-center">
@@ -470,7 +468,7 @@ export default function MenuPage() {
             <div
               key={categoryKey}
               id={categoryKey}
-              className="mb-16 scroll-mt-24"
+              className="mb-16 scroll-mt-40"
             >
               {/* Main Category Section with Integrated Subsections */}
               <div className="bg-white rounded-2xl p-6 md:p-8 border border-gray-100 shadow-sm mb-8">
@@ -516,7 +514,7 @@ export default function MenuPage() {
                         <div
                           key={subsectionKey}
                           id={`${categoryKey}-${subsectionKey}`}
-                          className="scroll-mt-24"
+                          className="scroll-mt-40"
                         >
                           <div className="border-t border-gray-200 pt-6">
                             <div className="mb-4">
