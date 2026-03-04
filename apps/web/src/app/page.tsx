@@ -4,22 +4,22 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
-  MessageCircle,
-  ChefHat,
-  Sparkles,
-  Truck,
-  ArrowRight,
-  Play,
-  Star,
-  Instagram,
-  Menu,
-  Heart,
-  Calculator,
-  CreditCard,
-  CheckCircle,
-  Clock,
-  Facebook,
-} from "lucide-react";
+  Message02Icon,
+  ChefHatIcon,
+  SparklesIcon,
+  TruckIcon,
+  ArrowRight01Icon,
+  PlayIcon,
+  StarIcon,
+  InstagramIcon,
+  Menu01Icon,
+  FavouriteIcon,
+  CalculatorIcon,
+  CreditCardIcon,
+  CheckmarkCircle01Icon,
+  Time02Icon,
+  Facebook01Icon,
+} from "hugeicons-react";
 import {
   Carousel,
   CarouselContent,
@@ -29,30 +29,31 @@ import {
 } from "@/components/ui/carousel";
 import HeroSection from "@/components/hero-section";
 import MenuSection from "@/components/menu-section";
+import TableOfContents from "@/components/table-of-contents";
 
 // Why Choose Us Section Component
 function WhyChooseUsSection() {
   const advantages = [
     {
-      icon: ChefHat,
+      icon: ChefHatIcon,
       title: "Artesanal Premium",
       description:
         "Cada pieza elaborada con pasión y dedicación por manos expertas en repostería tradicional vasca y contemporánea",
     },
     {
-      icon: Sparkles,
+      icon: SparklesIcon,
       title: "Sabores Exclusivos",
       description:
         "Creaciones únicas que combinan técnicas tradicionales con innovaciones modernas, incluyendo ediciones limitadas de temporada",
     },
     {
-      icon: Truck,
+      icon: TruckIcon,
       title: "Servicio Personalizado",
       description:
         "Atención individualizada para cada cliente, desde la selección de sabores hasta la entrega fresca en tu puerta",
     },
     {
-      icon: Clock,
+      icon: Time02Icon,
       title: "Frescura Diaria",
       description:
         "Productos elaborados diariamente para garantizar la máxima frescura y calidad en cada bocado",
@@ -67,7 +68,7 @@ function WhyChooseUsSection() {
   ];
 
   return (
-    <section className="py-12 md:py-20 bg-white relative grainy-background">
+    <section id="porque-matilda" className="py-12 md:py-20 bg-white relative grainy-background">
       {/* Top wave */}
       {/* <div
         className="wave-divider wave-divider--light wave-divider--top"
@@ -136,7 +137,7 @@ function InstagramPostsSection() {
   ];
 
   return (
-    <section className="py-20 bg-white grainy-background">
+    <section id="instagram" className="py-20 bg-white grainy-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2
@@ -155,7 +156,7 @@ function InstagramPostsSection() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 bg-[#223DFC] hover:bg-[#0121D6] text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors duration-200"
           >
-            <Instagram className="w-6 h-6" />
+            <InstagramIcon className="w-6 h-6" />
             <span>@matilda_reposteriaartesanal</span>
           </a>
         </div>
@@ -239,7 +240,7 @@ function TestimonialsSection() {
   ];
 
   return (
-    <section className="py-20 bg-white grainy-background">
+    <section id="testimonios" className="py-20 bg-white grainy-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2
@@ -263,7 +264,7 @@ function TestimonialsSection() {
               {/* Rating */}
               <div className="flex items-center gap-1 mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star
+                  <StarIcon
                     key={i}
                     className="w-5 h-5 fill-yellow-400 text-yellow-400"
                   />
@@ -304,7 +305,7 @@ function TestimonialsSection() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 bg-[#223DFC] hover:bg-[#0121D6] text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors duration-200"
           >
-            <Star className="w-6 h-6" />
+            <StarIcon className="w-6 h-6" />
             <span>Ver más reseñas en Google Maps</span>
           </a>
         </div>
@@ -318,44 +319,44 @@ function DeliverySection() {
   const steps = [
     {
       step: "1",
-      icon: MessageCircle,
+      icon: Message02Icon,
       title: "Cotizar",
       description: "Contacta por WhatsApp para cotizar tu pedido personalizado",
     },
     {
       step: "2",
-      icon: Menu,
+      icon: Menu01Icon,
       title: "Explorar Menú",
       description: "Revisa nuestro menú completo de opciones artesanales",
     },
     {
       step: "3",
-      icon: Heart,
+      icon: FavouriteIcon,
       title: "Seleccionar",
       description:
         "Elige tus sabores y cantidades preferidas con atención personalizada",
     },
     {
       step: "4",
-      icon: Calculator,
+      icon: CalculatorIcon,
       title: "Cotización",
       description: "Recibe el total con costos de entrega incluidos",
     },
     {
       step: "5",
-      icon: CreditCard,
+      icon: CreditCardIcon,
       title: "Pago Seguro",
       description: "Realiza el pago de forma segura y conveniente",
     },
     {
       step: "6",
-      icon: CheckCircle,
+      icon: CheckmarkCircle01Icon,
       title: "Confirmación",
       description: "Recibe confirmación inmediata y tiempo estimado de entrega",
     },
     {
       step: "7",
-      icon: Truck,
+      icon: TruckIcon,
       title: "Disfruta",
       description:
         "Recibe tu pedido fresco y artesanal en la puerta de tu casa",
@@ -427,6 +428,7 @@ function DeliverySection() {
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#f2f1ed]">
+      <TableOfContents />
       <HeroSection />
       <MenuSection />
       <WhyChooseUsSection />

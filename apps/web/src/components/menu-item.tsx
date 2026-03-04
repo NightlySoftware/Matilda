@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Star } from "lucide-react";
+import { StarIcon } from "hugeicons-react";
 
 interface MenuItemProps {
   item: any;
@@ -171,9 +171,8 @@ export default function MenuItem({
 
     const article = getSpanishArticle(fullProductName);
 
-    const detailedMessage = `Hola! Vi ${article} ${fullProductName}${
-      context ? ` ${context}` : ""
-    }${temperatureInfo}${sizeInfo}${specialInfo} en su sitio web de Matilda y me encantaría ordenarlo. ¿Me pueden ayudar con el pedido? ¡Muchas gracias!`;
+    const detailedMessage = `Hola! Vi ${article} ${fullProductName}${context ? ` ${context}` : ""
+      }${temperatureInfo}${sizeInfo}${specialInfo} en su sitio web de Matilda y me encantaría ordenarlo. ¿Me pueden ayudar con el pedido? ¡Muchas gracias!`;
 
     return encodeURIComponent(detailedMessage);
   };
@@ -186,9 +185,8 @@ export default function MenuItem({
 
   return (
     <div
-      className={`bg-white rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 ${
-        isCompact ? "p-3" : "p-4"
-      }`}
+      className={`bg-white rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 ${isCompact ? "p-3" : "p-4"
+        }`}
     >
       <div className="flex gap-3">
         {/* Product Image */}
@@ -208,9 +206,8 @@ export default function MenuItem({
             {/* Header with name and badges */}
             <div className="flex flex-wrap items-center gap-2 mb-1">
               <h3
-                className={`font-semibold text-gray-900 leading-tight ${
-                  isCompact ? "text-sm" : "text-base"
-                }`}
+                className={`font-semibold text-gray-900 leading-tight ${isCompact ? "text-sm" : "text-base"
+                  }`}
               >
                 {displayName}
               </h3>
@@ -221,7 +218,7 @@ export default function MenuItem({
               )}
               {item.special_of_month && (
                 <span className="bg-purple-100 text-purple-800 text-xs px-2 py-0.5 rounded-full font-medium flex items-center gap-1 whitespace-nowrap">
-                  <Star className="w-3 h-3" />
+                  <StarIcon className="w-3 h-3" />
                   Especial
                 </span>
               )}
@@ -285,25 +282,22 @@ export default function MenuItem({
             <div className="text-right shrink-0">
               {item.price_range ? (
                 <span
-                  className={`font-bold text-[#223DFC] ${
-                    isCompact ? "text-base" : "text-lg"
-                  }`}
+                  className={`font-bold text-[#223DFC] ${isCompact ? "text-base" : "text-lg"
+                    }`}
                 >
                   ${item.price_range.min} - ${item.price_range.max}
                 </span>
               ) : item.extra_price ? (
                 <span
-                  className={`font-bold text-[#223DFC] ${
-                    isCompact ? "text-base" : "text-lg"
-                  }`}
+                  className={`font-bold text-[#223DFC] ${isCompact ? "text-base" : "text-lg"
+                    }`}
                 >
                   +${item.extra_price}
                 </span>
               ) : (
                 <span
-                  className={`font-bold text-[#223DFC] ${
-                    isCompact ? "text-base" : "text-lg"
-                  }`}
+                  className={`font-bold text-[#223DFC] ${isCompact ? "text-base" : "text-lg"
+                    }`}
                 >
                   {formatPrice(item.price)}
                 </span>

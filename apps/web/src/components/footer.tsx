@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { MapPin } from "lucide-react";
+import { Location01Icon } from "hugeicons-react";
 
 function FooterSection() {
   const getStoreStatuses = () => {
@@ -38,7 +38,7 @@ function FooterSection() {
     };
   };
 
-  const [storeStatuses, setStoreStatuses] = useState(getStoreStatuses());
+  const [storeStatuses, setStoreStatuses] = useState(() => getStoreStatuses());
 
   useEffect(() => {
     const checkStoreHours = () => {
@@ -83,7 +83,7 @@ function FooterSection() {
               <div className="flex items-start gap-4">
                 <div className="">
                   <span className="flex items-center gap-2">
-                    <MapPin className="size-4" />
+                    <Location01Icon className="size-4" />
                     <a
                       href="https://www.google.com/maps/place/Matilda+Reposteria+Plaza+Cibeles/data=!4m2!3m1!1s0x0:0xc0d35fb6c1796a33?sa=X&ved=1t:2428&ictx=111"
                       target="_blank"
@@ -98,11 +98,10 @@ function FooterSection() {
                   </p>
                 </div>
                 <span
-                  className={`px-2 py-1 text-xs font-bold rounded border border-[#00054B] ${
-                    storeStatuses.plazaVillas.isOpen
-                      ? "bg-green-500 text-white"
-                      : "bg-red-500 text-white"
-                  }`}
+                  className={`px-2 py-1 text-xs font-bold rounded border border-[#00054B] ${storeStatuses.plazaVillas.isOpen
+                    ? "bg-green-500 text-white"
+                    : "bg-red-500 text-white"
+                    }`}
                 >
                   {storeStatuses.plazaVillas.status}
                 </span>
@@ -110,7 +109,7 @@ function FooterSection() {
               <div className="flex items-start gap-4">
                 <div className="">
                   <span className="flex items-center gap-2">
-                    <MapPin className="size-4" />
+                    <Location01Icon className="size-4" />
                     <a
                       href="https://www.google.com/maps/place/Matilda+Reposteria+Plaza+Cibeles/data=!4m2!3m1!1s0x0:0xc0d35fb6c1796a33?sa=X&ved=1t:2428&ictx=111"
                       target="_blank"
@@ -125,11 +124,10 @@ function FooterSection() {
                   </p>
                 </div>
                 <span
-                  className={`px-2 py-1 text-xs font-bold rounded border border-[#00054B] ${
-                    storeStatuses.plazaCibeles.isOpen
-                      ? "bg-green-500 text-white"
-                      : "bg-red-500 text-white"
-                  }`}
+                  className={`px-2 py-1 text-xs font-bold rounded border border-[#00054B] ${storeStatuses.plazaCibeles.isOpen
+                    ? "bg-green-500 text-white"
+                    : "bg-red-500 text-white"
+                    }`}
                 >
                   {storeStatuses.plazaCibeles.status}
                 </span>
@@ -419,9 +417,7 @@ function FooterSection() {
 
         <div className="border-t border-white/20 mt-12 pt-8 text-center">
           <a
-            href={`https://wa.me/524622212236?text=${encodeURIComponent(
-              "Hola, vi que desarrollan sitios web, ¿puedes contarme más sobre sus servicios?"
-            )}`}
+            href="https://nightlysoftware.com"
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm opacity-80 hover:opacity-100 transition-opacity"

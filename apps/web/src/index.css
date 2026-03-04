@@ -12,9 +12,23 @@ html,
 body {
   @apply bg-white dark:bg-gray-950;
   scroll-behavior: smooth;
+  letter-spacing: -0.15px;
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
+  }
+}
+
+/* Scroll offset for sticky navbar — prevents section titles from hiding behind the header */
+[id] {
+  scroll-margin-top: 140px;
+  /* mobile: header is taller with mobile nav */
+}
+
+@media (min-width: 768px) {
+  [id] {
+    scroll-margin-top: 100px;
+    /* tablet/desktop: header is shorter */
   }
 }
 
@@ -130,6 +144,7 @@ body {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -137,18 +152,24 @@ body {
 
 /* Levitating animation for mascots */
 @keyframes float-slow {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-20px);
   }
 }
 
 @keyframes float-slow-delayed {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-15px);
   }
@@ -161,6 +182,21 @@ body {
 .animate-float-slow-delayed {
   animation: float-slow-delayed 7s ease-in-out infinite;
   animation-delay: 2s;
+}
+
+@keyframes carousel-progress {
+  0% {
+    transform: scaleX(0);
+  }
+
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+.animate-carousel-progress {
+  animation: carousel-progress 3000ms linear forwards;
+  transform-origin: left;
 }
 
 .grainy-background-animated {

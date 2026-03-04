@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ArrowUp } from "lucide-react";
+import { ArrowUp01Icon } from "hugeicons-react";
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
@@ -15,7 +15,7 @@ export default function ScrollToTop() {
       }
     };
 
-    window.addEventListener("scroll", toggleVisibility);
+    window.addEventListener("scroll", toggleVisibility, { passive: true });
 
     return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
@@ -30,12 +30,11 @@ export default function ScrollToTop() {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-6 right-6 z-50 bg-[#223DFC] hover:bg-[#0121D6] text-white p-3 rounded-full shadow-lg transition-all duration-500 hover:scale-110 focus:outline-none focus:ring-4 focus:ring-[#223DFC]/30 ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'
-      }`}
+      className={`fixed bottom-6 right-6 z-50 bg-[#223DFC] hover:bg-[#0121D6] text-white p-3 rounded-full shadow-lg transition-all duration-500 hover:scale-110 focus:outline-none focus:ring-4 focus:ring-[#223DFC]/30 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'
+        }`}
       aria-label="Scroll to top"
     >
-      <ArrowUp className="w-6 h-6" />
+      <ArrowUp01Icon className="w-6 h-6" />
     </button>
   );
 }

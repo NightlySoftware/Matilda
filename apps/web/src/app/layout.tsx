@@ -1,18 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Sarina } from "next/font/google";
+import { Inter, Sarina } from "next/font/google";
 import "../index.css";
 import Providers from "@/components/providers";
 import Header from "@/components/header";
 import FooterSection from "@/components/footer";
 import ScrollToTop from "@/components/scroll-to-top";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
@@ -51,7 +46,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${sarina.variable} antialiased`}
+        className={`${inter.variable} ${sarina.variable} antialiased`}
       >
         <Providers>
           <div className="min-h-screen">

@@ -1,13 +1,11 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel";
 
@@ -82,31 +80,30 @@ export default function HeroSection() {
           </div>
 
           {/* Carousel - Right side on desktop, below on mobile */}
-          <div className="flex-1 w-full md:w-auto">
+          <div className="flex-1 w-full md:w-auto relative">
+            {/* Left mascot — bottom-left corner of the carousel */}
+            <div className="absolute bottom-14 -left-6 z-20 animate-float-slow pointer-events-none">
+              <Image
+                src="/mascots/bread.png"
+                alt="Bread mascot"
+                width={200}
+                height={200}
+                className="w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-44 lg:h-44 object-contain drop-shadow-lg"
+              />
+            </div>
+            {/* Right mascot — bottom-right corner of the carousel */}
+            <div className="absolute bottom-14 -right-6 z-20 animate-float-slow-delayed pointer-events-none">
+              <Image
+                src="/mascots/roll.png"
+                alt="Roll mascot"
+                width={200}
+                height={200}
+                className="w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-44 lg:h-44 object-contain drop-shadow-lg"
+              />
+            </div>
             <HeroCarousel />
           </div>
         </div>
-      </div>
-
-      {/* Mascots */}
-      <div className="absolute bottom-8 left-8 z-10 animate-float-slow">
-        <Image
-          src="/mascots/bread.png"
-          alt="Bread mascot"
-          width={200}
-          height={200}
-          className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 object-contain drop-shadow-lg"
-        />
-      </div>
-
-      <div className="absolute bottom-8 right-8 z-10 animate-float-slow-delayed">
-        <Image
-          src="/mascots/roll.png"
-          alt="Roll mascot"
-          width={200}
-          height={200}
-          className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 object-contain drop-shadow-lg"
-        />
       </div>
 
       {/* Scroll Indicator */}
@@ -125,6 +122,13 @@ export default function HeroSection() {
 // Hero Carousel Component
 function HeroCarousel() {
   const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [progressKey, setProgressKey] = useState(0);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const INTERVAL_MS = 3000;
+
   const images = [
     { src: "/images/cake.jpg", alt: "Delicious Cake" },
     { src: "/images/cookies.jpg", alt: "Fresh Cookies" },
@@ -132,46 +136,182 @@ function HeroCarousel() {
     { src: "/images/tiramisu.jpg", alt: "Creamy Tiramisu" },
   ];
 
-  // Auto-scroll functionality
+  // Start/restart the auto-scroll interval
+  const startInterval = useCallback(() => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      api?.scrollNext();
+    }, INTERVAL_MS);
+  }, [api]);
+
+  // Stop the auto-scroll interval
+  const stopInterval = useCallback(() => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  }, []);
+
+  // Reset progress bar animation by changing the key
+  const resetProgress = useCallback(() => {
+    setProgressKey((k) => k + 1);
+  }, []);
+
+  // Setup the carousel listener and auto-scroll
   useEffect(() => {
     if (!api) return;
 
-    const interval = setInterval(() => {
-      api.scrollNext();
-    }, 3000);
+    const onSelect = () => {
+      setCurrent(api.selectedScrollSnap());
+    };
 
-    return () => clearInterval(interval);
-  }, [api]);
+    api.on("select", onSelect);
+
+    if (!isPaused) {
+      startInterval();
+    }
+
+    return () => {
+      stopInterval();
+      api.off("select", onSelect);
+    };
+  }, [api, isPaused, startInterval, stopInterval]);
+
+  // Manual navigation — resets timer + progress bar
+  const handlePrev = useCallback(() => {
+    api?.scrollPrev();
+    resetProgress();
+    if (!isPaused) startInterval();
+  }, [api, isPaused, resetProgress, startInterval]);
+
+  const handleNext = useCallback(() => {
+    api?.scrollNext();
+    resetProgress();
+    if (!isPaused) startInterval();
+  }, [api, isPaused, resetProgress, startInterval]);
+
+  const togglePause = useCallback(() => {
+    setIsPaused((prev) => {
+      const next = !prev;
+      if (next) {
+        stopInterval();
+      } else {
+        resetProgress();
+        startInterval();
+      }
+      return next;
+    });
+  }, [stopInterval, resetProgress, startInterval]);
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full flex flex-col gap-4">
       <Carousel
         setApi={setApi}
         opts={{
           align: "start",
           loop: true,
         }}
-        className="w-full"
+        className="w-full shadow-2xl rounded-xl"
       >
         <CarouselContent>
           {images.map((image, index) => (
             <CarouselItem key={index} className="basis-full">
-              <div className="relative w-full aspect-square md:aspect-square rounded-xl overflow-hidden">
+              <div className="relative w-full aspect-[4/3] md:aspect-square rounded-xl overflow-hidden shadow-inner">
                 <Image
                   src={image.src}
                   alt={image.alt}
                   fill
-                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover transition-transform duration-700 hover:scale-110"
                   priority={index === 0}
                 />
               </div>
             </CarouselItem>
           ))}
         </CarouselContent>
-        {/* Navigation arrows relative to carousel container */}
-        <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 bg-[#FFD200] hover:bg-[#E6BD00] text-[#00054B] border-2 border-[#00054B] rounded-md shadow-lg z-10" />
-        <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 bg-[#FFD200] hover:bg-[#E6BD00] text-[#00054B] border-2 border-[#00054B] rounded-md shadow-lg z-10" />
       </Carousel>
+
+      {/* Controls Container outside the carousel */}
+      <div className="flex items-center justify-between w-full mt-2">
+        {/* Loading Progress Bar */}
+        <div className="flex-1 mr-4 h-2 bg-white/20 rounded-full overflow-hidden relative">
+          {!isPaused && (
+            <div
+              key={`${current}-${progressKey}`}
+              className="absolute top-0 left-0 h-full w-full bg-[#FFD200] animate-carousel-progress rounded-full"
+            />
+          )}
+          {isPaused && (
+            <div
+              className="absolute top-0 left-0 h-full bg-[#FFD200]/50 rounded-full"
+              style={{ width: "100%" }}
+            />
+          )}
+        </div>
+
+        {/* Navigation buttons */}
+        <div className="flex gap-2 shrink-0">
+          {/* Pause / Play */}
+          <button
+            onClick={togglePause}
+            className="w-10 h-10 flex items-center justify-center bg-white/20 hover:bg-white/30 text-white border-2 border-white/40 rounded-full shadow-lg transition-all hover:scale-105"
+            aria-label={isPaused ? "Play slideshow" : "Pause slideshow"}
+          >
+            {isPaused ? (
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <rect x="6" y="4" width="4" height="16" rx="1" />
+                <rect x="14" y="4" width="4" height="16" rx="1" />
+              </svg>
+            )}
+          </button>
+
+          {/* Previous */}
+          <button
+            onClick={handlePrev}
+            className="w-10 h-10 flex items-center justify-center bg-[#FFD200] hover:bg-[#E6BD00] text-[#00054B] border-2 border-[#00054B] rounded-full shadow-lg transition-transform hover:scale-105"
+            aria-label="Previous image"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+          </button>
+
+          {/* Next */}
+          <button
+            onClick={handleNext}
+            className="w-10 h-10 flex items-center justify-center bg-[#FFD200] hover:bg-[#E6BD00] text-[#00054B] border-2 border-[#00054B] rounded-full shadow-lg transition-transform hover:scale-105"
+            aria-label="Next image"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

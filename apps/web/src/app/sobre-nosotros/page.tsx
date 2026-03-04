@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft01Icon } from "hugeicons-react";
 
 export default function SobreNosotrosPage() {
   return (
@@ -13,7 +13,7 @@ export default function SobreNosotrosPage() {
               href="/"
               className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg transition-all duration-200 hover:shadow-sm border border-white/20"
             >
-              <ArrowLeft className="w-4 h-4" />
+              <ArrowLeft01Icon className="w-4 h-4" />
               <span>Volver</span>
             </Link>
           </div>
@@ -51,3 +51,6 @@ export default function SobreNosotrosPage() {
     </div>
   );
 }
+
+
+

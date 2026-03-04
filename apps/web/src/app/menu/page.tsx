@@ -3,21 +3,21 @@
 import Link from "next/link";
 import { useState } from "react";
 import {
-  ArrowLeft,
-  Cake,
-  Cookie,
-  Coffee,
-  Heart,
-  Star,
-  ChefHat,
-  Utensils,
-  IceCreamBowl,
-  ChevronDown,
-  ChevronUp,
-  Download,
-  FileText,
-} from "lucide-react";
+  ArrowLeft01Icon,
+  CookieIcon,
+  Coffee02Icon,
+  FavouriteIcon,
+  StarIcon,
+  ChefHatIcon,
+  Restaurant01Icon,
+  IceCream01Icon,
+  ArrowDown01Icon,
+  ArrowUp01Icon,
+  Download01Icon,
+  Note01Icon,
+} from "hugeicons-react";
 import MenuItem from "../../components/menu-item";
+import MenuTableOfContents from "../../components/menu-table-of-contents";
 
 const menuData = {
   business: "Matilda Repostería Artesanal",
@@ -292,19 +292,19 @@ function CategoryIcon({ categoryKey }: { categoryKey: string }) {
 
   switch (categoryKey) {
     case "tarta_vasca_completa":
-      return <Cake {...iconProps} />;
+      return <ChefHatIcon {...iconProps} />;
     case "porciones_tarta_vasca":
-      return <Cake {...iconProps} />;
+      return <ChefHatIcon {...iconProps} />;
     case "productos_de_temporada":
-      return <Star {...iconProps} />;
+      return <StarIcon {...iconProps} />;
     case "cookies_estilo_new_york":
-      return <Cookie {...iconProps} />;
+      return <CookieIcon {...iconProps} />;
     case "bebidas":
-      return <Coffee {...iconProps} />;
+      return <Coffee02Icon {...iconProps} />;
     case "roles_brioche":
-      return <ChefHat {...iconProps} />;
+      return <ChefHatIcon {...iconProps} />;
     default:
-      return <ChefHat {...iconProps} />;
+      return <ChefHatIcon {...iconProps} />;
   }
 }
 
@@ -339,6 +339,7 @@ export default function MenuPage() {
 
   return (
     <div className="min-h-screen bg-white grainy-background">
+      <MenuTableOfContents />
       {/* Header */}
       <div className="bg-[#223DFC] grainy-background text-white py-12 pt-40 md:pt-32">
         <div className="container mx-auto px-4">
@@ -348,7 +349,7 @@ export default function MenuPage() {
               href="/"
               className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg transition-all duration-200 hover:shadow-sm border border-white/20"
             >
-              <ArrowLeft className="w-4 h-4" />
+              <ArrowLeft01Icon className="w-4 h-4" />
               <span>Volver</span>
             </Link>
           </div>
@@ -399,9 +400,9 @@ export default function MenuPage() {
                     </div>
                     <div className="text-[#223DFC] group-hover:text-[#0121D6] transition-colors duration-200">
                       {expandedCategories.has(categoryKey) ? (
-                        <ChevronUp className="w-4 h-4" />
+                        <ArrowUp01Icon className="w-4 h-4" />
                       ) : (
-                        <ChevronDown className="w-4 h-4" />
+                        <ArrowDown01Icon className="w-4 h-4" />
                       )}
                     </div>
                   </button>
@@ -453,9 +454,9 @@ export default function MenuPage() {
               rel="noopener noreferrer"
               className="bg-[#FFD200] hover:bg-[#E6BD00] text-[#00054B] px-6 py-3 rounded-md font-semibold text-base transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2 border border-[#00054B] shrink-0 whitespace-nowrap group"
             >
-              <FileText className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" />
+              <Note01Icon className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" />
               <span className="font-medium">Ver y Descargar Menú PDF</span>
-              <Download className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200" />
+              <Download01Icon className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200" />
             </a>
           </div>
         </div>
@@ -529,11 +530,10 @@ export default function MenuPage() {
                             </div>
 
                             <div
-                              className={`grid gap-3 md:gap-4 ${
-                                subsectionKey === "galletas_clasicas"
-                                  ? "grid-cols-1"
-                                  : "grid-cols-1 md:grid-cols-2"
-                              }`}
+                              className={`grid gap-3 md:gap-4 ${subsectionKey === "galletas_clasicas"
+                                ? "grid-cols-1"
+                                : "grid-cols-1 md:grid-cols-2"
+                                }`}
                             >
                               {subsection.items.map(
                                 (item: any, itemIndex: number) => (
