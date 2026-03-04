@@ -31,6 +31,64 @@ import HeroSection from "@/components/hero-section";
 import MenuSection from "@/components/menu-section";
 import TableOfContents from "@/components/table-of-contents";
 
+// Digital Design First Section
+function DigitalDesignSection() {
+  return (
+    <section className="py-20 bg-[#FAF9F6] grainy-background overflow-hidden">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col lg:flex-row items-center gap-12">
+          <div className="lg:w-1/2">
+            <h2
+              className="text-4xl md:text-5xl font-normal text-gray-900 mb-6"
+              style={{ fontFamily: "var(--font-sarina)" }}
+            >
+              Diseño Digital Proactivo
+            </h2>
+            <p className="text-xl text-gray-700 leading-relaxed mb-8">
+              Este proyecto fue concebido con un enfoque <span className="font-semibold text-[#223DFC]">Digital Design First</span> desde sus cimientos.
+              No es solo una web; es una experiencia moderna, elegante y humana, diseñada para ser intuitiva y hermosa de navegar.
+            </p>
+            <div className="space-y-4">
+              <div className="flex items-start gap-4">
+                <div className="mt-1 bg-blue-100 p-2 rounded-full">
+                  <FavouriteIcon className="w-5 h-5 text-[#223DFC]" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-gray-900">Atmósfera "Cozy" y Familiar</h3>
+                  <p className="text-gray-600">Integración total con la identidad de marca, colores y vibras de Matilda para que te sientas como en casa.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <div className="mt-1 bg-blue-100 p-2 rounded-full">
+                  <CheckmarkCircle01Icon className="w-5 h-5 text-[#223DFC]" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-gray-900">Venta Streamlined</h3>
+                  <p className="text-gray-600">Navegación fluida por el menú completo con botones de WhatsApp directos para una compra rápida, agradable y sin fricciones.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="lg:w-1/2 relative">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500">
+              <Image
+                src="/matilda_blue.png"
+                alt="Matilda Design Focus"
+                width={600}
+                height={400}
+                className="w-full h-auto object-cover"
+              />
+            </div>
+            {/* Decorative elements */}
+            <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-[#FFD200] rounded-full blur-3xl opacity-50 -z-10"></div>
+            <div className="absolute -top-6 -right-6 w-32 h-32 bg-[#223DFC] rounded-full blur-3xl opacity-30 -z-10"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // Why Choose Us Section Component
 function WhyChooseUsSection() {
   const advantages = [
@@ -430,6 +488,7 @@ export default function Home() {
     <div className="min-h-screen bg-[#f2f1ed]">
       <TableOfContents />
       <HeroSection />
+      <DigitalDesignSection />
       <MenuSection />
       <WhyChooseUsSection />
       <InstagramPostsSection />
