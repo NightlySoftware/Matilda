@@ -488,7 +488,7 @@ export default function Home() {
     <div className="min-h-screen bg-[#f2f1ed]">
       <TableOfContents />
       <HeroSection />
-      <DigitalDesignSection />
+      {/* <DigitalDesignSection /> */}
       <MenuSection />
       <WhyChooseUsSection />
       <InstagramPostsSection />

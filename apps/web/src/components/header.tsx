@@ -6,7 +6,7 @@ export default function Header() {
   const navigation = [
     { href: "/", label: "Inicio" },
     { href: "/menu", label: "Menú" },
-    { href: "/sobre-nosotros", label: "Sobre Nosotros" },
+    // { href: "/sobre-nosotros", label: "Sobre Nosotros" },
   ] as const;
 
   const whatsappUrl = `https://wa.me/524621957429?text=${encodeURIComponent(
@@ -53,13 +53,13 @@ export default function Header() {
             </svg>
             <span
               className="hidden sm:inline font-bold"
-              /* style={{ fontFamily: "var(--font-sarina)" }} */
+            /* style={{ fontFamily: "var(--font-sarina)" }} */
             >
               Ordenar
             </span>
             <span
               className="sm:hidden font-bold"
-              /* style={{ fontFamily: "var(--font-sarina)" }} */
+            /* style={{ fontFamily: "var(--font-sarina)" }} */
             >
               Ordenar
             </span>
